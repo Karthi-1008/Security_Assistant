@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Security AI Assistant</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Security AI Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="chat-container">
+    <!-- ========== BLUE RETRO THEME BOX ========== -->
+    <div class="theme-box">
 
-    <div class="header">
-      <h2>Security AI Assistant</h2>
-    </div>
+        <!-- Decorative title -->
+        <div class="theme-title">
+            Welcome,<br>
+            <span>Security AI Chat</span>
+        </div>
 
-    <div id="chat-box" class="chat-box"></div>
+        <!-- ===== ORIGINAL CHAT WRAPPER ===== -->
+        <div class="chat-wrapper">
 
-    <div class="api-section">
-      <input type="password" id="apiKey" placeholder="Paste your OpenAI API Key here">
-    </div>
+            <!-- API Key Section -->
+            <div class="api-section">
+                <input type="password" id="apiKey" class="input" placeholder="Enter API Key">
+            </div>
 
-    <div class="input-section">
-      <input type="text" id="userInput" placeholder="Ask about security or vulnerabilities...">
-      <button onclick="sendMessage()">Send</button>
-    </div>
+            <!-- Chat Box -->
+            <div class="chat-container">
+                <div class="messages" id="chat-box"></div>
 
-  </div>
+                <div class="input-area">
+                    <input type="text" id="userInput" class="input" placeholder="Type your message..." />
+                    <button id="sendBtn" type="button">Send</button>
+                </div>
+            </div>
 
-  <script src="script.js"></script>
+        </div> <!-- end chat-wrapper -->
+
+        <!-- ===== SAVE AS PDF BUTTON ===== -->
+        <div class="pdf-button-container">
+            <button id="savePdfBtn" type="button">📄 Save Chat as PDF</button>
+        </div>
+
+    </div> <!-- end theme-box -->
+
+    <script src="script.js"></script>
 </body>
 </html>
