@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Security AI Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="chat-container">
+
+    <div class="header">
+      <h2>Security AI Assistant</h2>
+    </div>
+
+    <div id="chat-box" class="chat-box"></div>
+
+    <div class="api-section">
+      <input type="password" id="apiKey" placeholder="Paste your OpenAI API Key here">
+    </div>
+
+    <div class="input-section">
+      <input type="text" id="userInput" placeholder="Ask about security or vulnerabilities...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
