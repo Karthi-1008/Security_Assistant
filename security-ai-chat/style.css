@@ -1,75 +1,364 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    background: #0b1630;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.chat-container {
-  width: 400px;
-  height: 600px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+/* ---------- BLUE THEME BOX (retro style) ---------- */
+.theme-box {
+    --font-color: #ffffff;
+    --font-color-sub: #cbd5e6;
+    --bg-color: #1e2a3f;
+    --main-color: #2d3b5a;
+    --accent-color: #3e4e6b;
+    --shadow-color: #0f1a2c;
+
+    background: var(--bg-color);
+    border: 2px solid var(--main-color);
+    box-shadow: 8px 8px 0 var(--shadow-color);
+    border-radius: 5px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.header {
-  padding: 15px;
-  background: #202123;
-  color: white;
-  text-align: center;
-  border-radius: 10px 10px 0 0;
+.theme-title {
+    color: var(--font-color);
+    font-weight: 900;
+    font-size: 24px;
+    margin-bottom: 5px;
 }
 
-.chat-box {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+.theme-title span {
+    color: var(--font-color-sub);
+    font-weight: 600;
+    font-size: 20px;
 }
+/* -------------------------------------------------- */
 
-.message {
-  margin: 8px 0;
-  padding: 8px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.user {
-  background: #d1e7dd;
-  align-self: flex-end;
-}
-
-.bot {
-  background: #e2e3e5;
-}
-
-.input-section {
-  display: flex;
-  padding: 10px;
-}
-
-.input-section input {
-  flex: 1;
-  padding: 8px;
-  font-size: 14px;
-}
-
-.input-section button {
-  padding: 8px;
-  cursor: pointer;
+/* ---------- ORIGINAL CHAT STYLES (enhanced) ---------- */
+.chat-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .api-section {
-  padding: 10px;
+    margin-bottom: 15px;
 }
 
-.api-section input {
-  width: 100%;
-  padding: 6px;
-  font-size: 12px;
+/* Purple glow input (Uiverse) */
+.input {
+    color: white;
+    border: 2px solid #8707ff;
+    border-radius: 10px;
+    padding: 10px 25px;
+    background: transparent;
+    width: 100%;
+    max-width: none;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: box-shadow 0.1s ease;
 }
+
+.input:active {
+    box-shadow: 2px 2px 15px #8707ff inset;
+}
+
+.input::placeholder {
+    color: #b0b0b0;
+}
+
+.chat-container {
+    background: #1e2a3f;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+/* Messages container – with gap between bubbles */
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 5px;
+}
+
+/* Message bubbles */
+.message {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    font-size: 15px;
+    clear: both;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: linear-gradient(145deg, #7b2ff7, #5a0ecc);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background: #2d3b4f;
+    color: #f0f0f0;
+    border-bottom-left-radius: 4px;
+}
+
+.message.bot.loading {
+    background: #253141;
+    color: #a0b3cc;
+    font-style: italic;
+    border-bottom-left-radius: 18px;
+}
+
+/* ---------- MARKDOWN RENDERING STYLES ---------- */
+.message.bot strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.message.bot ul, 
+.message.bot ol {
+    margin-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.message.bot li {
+    margin-bottom: 4px;
+}
+
+.message.bot table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    background: #1e2a3f;
+    border: 1px solid #4a5c72;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.message.bot th {
+    background: #3e4e6b;
+    color: white;
+    font-weight: bold;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 2px solid #5a6e8a;
+}
+
+.message.bot td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #3e4e6b;
+    color: #f0f0f0;
+}
+
+.message.bot tr:last-child td {
+    border-bottom: none;
+}
+
+.message.bot tr:nth-child(even) {
+    background: #253141;
+}
+
+.message.bot tr:hover {
+    background: #2f4055;
+}
+
+.message.bot p {
+    margin-bottom: 10px;
+}
+
+.message.bot h1, 
+.message.bot h2, 
+.message.bot h3 {
+    color: #ffffff;
+    margin: 16px 0 8px 0;
+}
+
+.message.bot code {
+    background: #1a2633;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #d4d4d4;
+}
+
+.message.bot pre {
+    background: #1a2633;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 12px 0;
+}
+/* ---------------------------------------------- */
+
+/* Scrollbar */
+.messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+/* Input area */
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#sendBtn {
+    background: #ff004c;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 14px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#sendBtn:hover {
+    background: #d1003e;
+}
+
+/* ---------- SAVE AS PDF BUTTON ---------- */
+.pdf-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#savePdfBtn {
+    background: #2d3b5a;
+    border: 2px solid #4a5c72;
+    padding: 12px 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 4px 4px 0 #0f1a2c;
+}
+
+#savePdfBtn:hover {
+    background: #3e4e6b;
+    border-color: #5a6e8a;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #0f1a2c;
+}
+/* --------------------------------------- */
+
+/* ---------- PRINT STYLES (for PDF) ---------- */
+@media print {
+    /* Hide everything except the messages and title */
+    body {
+        background: white;
+        padding: 20px;
+    }
+
+    .theme-box {
+        box-shadow: none;
+        border: none;
+        background: white;
+        padding: 0;
+    }
+
+    .api-section,
+    .input-area,
+    .pdf-button-container,
+    #sendBtn,
+    #savePdfBtn,
+    .input {
+        display: none !important;
+    }
+
+    .chat-container {
+        background: white;
+        height: auto;
+        padding: 0;
+    }
+
+    .messages {
+        overflow: visible;
+        height: auto;
+        display: block;
+    }
+
+    .message {
+        max-width: 100%;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        page-break-inside: avoid;
+        background: white !important;
+        color: black !important;
+    }
+
+    .message.user {
+        background: #f0f0f0 !important;
+        color: black !important;
+        border-bottom-right-radius: 18px;
+    }
+
+    .message.bot {
+        background: #f9f9f9 !important;
+        color: black !important;
+        border-bottom-left-radius: 18px;
+    }
+
+    .message.bot table {
+        background: white;
+        border: 1px solid #333;
+    }
+
+    .message.bot th {
+        background: #ddd;
+        color: black;
+    }
+
+    .message.bot td {
+        border-bottom: 1px solid #ccc;
+        color: black;
+    }
+
+    .theme-title {
+        color: black;
+        margin-bottom: 20px;
+    }
+
+    .theme-title span {
+        color: #333;
+    }
+}
+/* ------------------------------------------- */
